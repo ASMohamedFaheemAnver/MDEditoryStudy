@@ -1,0 +1,2 @@
+# Use dynamic (variable) string as regex pattern in JavaScript
+# https://stackoverflow.com/questions/17885855/use-dynamic-variable-string-as-regex-pattern-in-javascript
