@@ -6,7 +6,8 @@ import { useState } from "react";
 
 function App() {
   const mdParser = new MarkdownIt();
-  const uploadedUrl = "https://avatars.githubusercontent.com/u/48675598?v=4";
+  const uploadedUrl =
+    "https://avatars.githubusercontent.com/u/48675598?v=4&key=";
   let mdEditor;
 
   const [mdData, setMdData] = useState({ mdText: null, imageUrls: [] });
@@ -26,9 +27,12 @@ function App() {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (data) => {
-        mdData.imageUrls.push(uploadedUrl);
-        setMdData({ ...mdData, imageUrls: [...mdData.imageUrls] });
-        resolve(uploadedUrl);
+        const randomizedUrl = uploadedUrl + Math.random(10);
+        setMdData((prevState) => ({
+          ...mdData,
+          imageUrls: [randomizedUrl, ...prevState.imageUrls],
+        }));
+        resolve(randomizedUrl);
       };
       reader.readAsDataURL(file);
     });
